@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 
 
 class Image(models.Model):
-    uploaded_by = models.ForeignKey(User, on_delete=models.RESTRICT)
     image = models.ImageField(upload_to='uploads')
     is_ocred = models.BooleanField(default=False)
 

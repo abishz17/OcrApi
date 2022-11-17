@@ -12,10 +12,19 @@ from data_collection.models import Image
 class AnnotationView(APIView):
     parser_classes = (MultiPartParser, FormParser)
 
-    def get(self, request, id):
-        image = Image.objects.get(id=id)
+    def getImage(self):
+        if Image.objects.filter(is_ocred=False).exists():
+            image = Image.objects.filter(is_ocred=False).order_by('?')[0]
+            return image
+        return False
+
+    def get(self, request):
+        if self.getImage() == False:
+            return Response("No image available", status=status.HTTP_204_NO_CONTENT)
+
+        image = self.getImage()
         image_serializer = ImageSerializer(image, many=False)
-        return Response(image_serializer.data["image"], status=status.HTTP_200_OK)
+        return Response(image_serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
         entries_serializer = AnnotationSerializer(data=request.data)
@@ -23,5 +32,4 @@ class AnnotationView(APIView):
             entries_serializer.save()
             return Response(entries_serializer.data, status=status.HTTP_201_CREATED)
         else:
-            print('errors', entries_serializer.errors)
             return Response(entries_serializer.errors, status=status.HTTP_400_BAD_REQUEST)

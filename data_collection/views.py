@@ -27,20 +27,10 @@ class OcrView(APIView):
             return Response(entries_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class ImageView(APIView):
-    parser_class = (MultiPartParser, FormParser)
-
-    def get(self, request, *args, **kwargs):
-        images = Image.objects.all()
-        serializer = ImageSerializer(images, many=True)
-        return Response(serializer.data)
-
-    def post(self, request, *args, **kwargs):
-        for images in request.data:
-            image_serializer = ImageSerializer(data=images)
-            if image_serializer.is_valid():
-                image_serializer.save()
-                return Response(image_serializer.data, status=status.HTTP_201_CREATED)
-            else:
-                print('errors', image_serializer.errors)
-                return Response(image_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+def upload(request):
+    if request.method == "POST":
+        images = request.FILES.getlist('images')
+        for image in images:
+            Image.objects.create(image=image)
+    images = Image.objects.all()
+    return render(request, 'imageupload.html', {'images': images})

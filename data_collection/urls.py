@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import OcrView, ImageView
+from .views import OcrView, upload
 
 urlpatterns = [
     path('api/', OcrView.as_view(), name='ocrview'),
-    path('image/', ImageView.as_view(), name='image'),
+    path('upload/', upload, name='upload'),
 ]
