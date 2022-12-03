@@ -23,5 +23,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('data_collection.urls')),
+    path('feedback/', include('feedback.urls')),
     path('annotate/', include('data_annotation.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
