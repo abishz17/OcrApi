@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'data_collection',
     'data_annotation',
-    'ocr_tesseract',
     'feedback',
     'rest_framework',
     'corsheaders'
