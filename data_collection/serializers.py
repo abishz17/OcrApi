@@ -5,7 +5,7 @@ from .models import Image, Ocred, Ocr_data
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
-        fields = '__all__'
+        fields = ('image', 'is_ocred')
 
 
 class OcrSerializer(serializers.ModelSerializer):

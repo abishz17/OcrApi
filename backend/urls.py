@@ -24,5 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('data_collection.urls')),
     path('feedback/', include('feedback.urls')),
-    path('annotate/', include('data_annotation.urls'))
+    path('annotate/', include('data_annotation.urls')),
+    path('ocr/', include('ocr_paddle.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -2,15 +2,18 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
+from rest_framework.renderers import JSONRenderer
 from rest_framework import status
 from .serializers import AnnotationSerializer
 from data_collection.serializers import ImageSerializer
 from .models import DataAnnotation
 from data_collection.models import Image
+from rest_framework import authentication, permissions
 
 
 class AnnotationView(APIView):
     parser_classes = (MultiPartParser, FormParser)
+    renderer_classes = [JSONRenderer]
 
     def getImage(self):
         if Image.objects.filter(is_ocred=False).exists():

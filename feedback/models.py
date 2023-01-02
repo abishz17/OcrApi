@@ -4,5 +4,5 @@ from django.db import models
 
 
 class FeedBack(models.Model):
-    email = models.EmailField()
+    email = models.EmailField(blank=True)
     description = models.TextField()
