@@ -8,6 +8,9 @@ class Image(models.Model):
     image = models.ImageField(upload_to='uploads')
     is_ocred = models.BooleanField(default=False)
 
+    def __str__(self):
+        return str(self.image)
+
 
 class Ocred(models.Model):
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
