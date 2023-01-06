@@ -3,6 +3,7 @@ from .models import DataAnnotation
 
 
 class AnnotationSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = DataAnnotation
         fields = '__all__'
