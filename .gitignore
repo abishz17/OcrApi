@@ -4,3 +4,7 @@ media/
 ocr_tesseract/
 python_folder/
 .vscode/
+rec_devanagari_lite2/
+infer_devanagari/
+inference2/
+hello/
