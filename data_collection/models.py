@@ -25,3 +25,4 @@ class Ocred(models.Model):
 class Ocr_data(models.Model):
     image = models.ImageField(upload_to='uploads/ocr_data')
     label = models.TextField()
+    lines = models.IntegerField(null=True, default=0)
