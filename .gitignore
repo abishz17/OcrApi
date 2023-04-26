@@ -1,0 +1,11 @@
+**/migrations
+**/__pycache__
+media/
+ocr_tesseract/
+PaddleOCR/
+
+.vscode/
+rec_devanagari_lite2/
+infer_devanagari/
+inference2/
+hello/
